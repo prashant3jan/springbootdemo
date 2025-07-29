@@ -15,14 +15,16 @@ public class Book {
     @JoinTable(name = "author_book", joinColumns =@JoinColumn(name="book_id"),inverseJoinColumns = @JoinColumn(name="author_id"))
     private Set<Author> authors;
 
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private Publisher  publisher;
+
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public String getTitle() {
         return title;
@@ -46,6 +48,14 @@ public class Book {
 
     public void setAuthors(Set<Author> authors) {
         this.authors = authors;
+    }
+
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
     }
     public Book(){
 
