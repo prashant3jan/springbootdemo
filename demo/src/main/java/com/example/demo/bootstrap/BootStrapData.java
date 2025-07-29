@@ -9,24 +9,20 @@ import com.example.demo.repositories.PublisherRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.HashSet;
-
 
 @Component
 public class BootStrapData implements CommandLineRunner {
     private final AuthorRepository authorRepository;
     private final BookRepository bookRepository;
     private final PublisherRepository publisherRepository;
-
     public BootStrapData(AuthorRepository authorRepository, BookRepository bookRepository, PublisherRepository publisherRepository) {
         this.authorRepository = authorRepository;
         this.bookRepository = bookRepository;
         this.publisherRepository = publisherRepository;
     }
-
     @Override
-    @Transactional
+    @Transactional//keeps the session open till the end of transaction so that we can do a getBooks.size()
     public void run(String... args) throws Exception {
         // --- Create Publisher ---
         Publisher publisher = new Publisher("SFG Publishing",
@@ -49,7 +45,6 @@ public class BootStrapData implements CommandLineRunner {
         authorRepository.save(eric);
         bookRepository.save(ddd);
         publisher.getBooks().add(ddd);
-
 
         // --- Create Author + Book Pair 2 ---
         Author john = new Author("John", "Smith", new HashSet<>());
