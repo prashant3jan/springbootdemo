@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>test</title></head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Publisher</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:if="${book != null}" th:text="${book.title}">123</td>
+        <td th:if="${book != null}" th:text="${book.title}">Spring in Action</td>
+        <td th:if="${book != null}" th:text="${book.publisher.name}">Wrox</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
